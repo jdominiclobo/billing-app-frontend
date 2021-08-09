@@ -1,15 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
 
-ReactDOM.render(
-  <React.StrictMode>
+import configureStore from "./state/store/configureStore";
+import { startGetUser } from "./actions/userAction";
+
+const store = configureStore();
+console.log("store", store.getState());
+
+store.subscribe(() => {
+  console.log(store.getState());
+});
+
+// handle page reloads
+if (localStorage.getItem("authToken")) {
+  store.dispatch(startGetUser());
+}
+
+const jsx = (
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </Provider>
 );
+
+ReactDOM.render(jsx, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
