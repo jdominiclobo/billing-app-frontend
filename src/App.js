@@ -93,6 +93,9 @@ function App(props) {
                   <Link to="/account" style={{ textDecoration: "none" }}>
                     <Button color="default">Account</Button>
                   </Link>
+                  <Link to="/customers" style={{ textDecoration: "none" }}>
+                    <Button>Customers</Button>
+                  </Link>
                   <Link
                     to="#"
                     style={{ textDecoration: "none" }}
